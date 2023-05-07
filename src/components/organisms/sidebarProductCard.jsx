@@ -8,7 +8,7 @@ const SidebarProductCard = ({ data }) => {
       onClick={() => navigate(`/product/${data?._id}`)}
       className="bg-base-300 my-2 rounded-lg flex p-2 gap-x-1 cursor-pointer"
     >
-      <img src={data?.src} alt={data?._id} width={60} height={60} />
+      <img src={data?.product_images[0]} alt={"img"} width={60} height={60} />
       <div className="flex flex-col w-full">
         <h3>
           <b>{data?.product_name}</b>

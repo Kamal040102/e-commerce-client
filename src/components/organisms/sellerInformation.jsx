@@ -6,12 +6,12 @@ const SellerInformation = ({ data, className }) => {
   return (
     <div className={classNames(className, "ml-5")}>
       <h4 className="text-lg text-primary">
-        {data?.name || "Seller Name"}
+        {data?.seller_name || "Seller Name"}
         {"  "}
-        <Rating rating={data?.rating || 4} />
+        <Rating rating={data?.seller_rating || 0} />
       </h4>
       <ul>
-        {data?.policies?.map((policy, key) => {
+        {data?.seller_policies?.map((policy, key) => {
           return <li key={key}>{policy}</li>;
         })}
       </ul>

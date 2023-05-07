@@ -2,13 +2,21 @@ import React from "react";
 import LoginLayout from "../../layouts/loginLayout";
 import ProductComponent from "../../components/organisms/product";
 import { useLocation } from "react-router-dom";
+import getProduct from "./api/getProduct";
 
 const Product = () => {
+  const [data, setData] = React.useState(null);
   const location = useLocation();
-  console.log(location.pathname.split("/")[2]);
+
+  React.useEffect(() => {
+    getProduct(location.pathname.split("/")[2]).then((product) =>
+      setData(product)
+    );
+  }, [location]);
+
   return (
     <LoginLayout>
-      <ProductComponent />
+      <ProductComponent data={data} />
     </LoginLayout>
   );
 };
