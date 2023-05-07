@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import Title from "../atoms/title";
-import CustomInput from "../atoms/input";
+import Cart from "../atoms/cart";
+import Account from "../atoms/account";
+import SidebarProduct from "./sidebarProduct";
 
 const Header = ({ className }) => {
-  const [search, setSearch] = useState(null);
   return (
     <div
       className={classNames(
@@ -13,8 +14,11 @@ const Header = ({ className }) => {
       )}
     >
       <Title fullTitle={import.meta.env.VITE_APP_PROJECT_TITLE} />
-      <CustomInput onChange={setSearch} className="h-8" placeholder="Search" />
-      <div>{search}</div>
+      <SidebarProduct />
+      <div className="flex justify-around gap-x-5 md:gap-x-10">
+        <Cart />
+        <Account />
+      </div>
     </div>
   );
 };

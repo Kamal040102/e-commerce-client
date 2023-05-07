@@ -8,7 +8,12 @@ export default {
     extend: {
       height: {
         "90-per": "90%",
-        "10-per": "10%"
+        "10-per": "10%",
+        "100": "30rem",
+        "98": "26rem"
+      },
+      width: {
+        "90-per": "90%"
       }
     },
   },

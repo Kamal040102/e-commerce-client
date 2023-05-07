@@ -1,8 +1,10 @@
 import React from "react";
 import CustomForm from "../molecules/form";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const RegisterComponent = () => {
+  const navigate = useNavigate();
   const formData = [
     {
       label: "What is your full name?",
@@ -41,13 +43,22 @@ const RegisterComponent = () => {
   });
 
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex flex-col justify-center items-center h-full gap-y-3">
       <CustomForm
         validationSchema={validationSchema}
         heading="register"
         className="w-3/4 md:w-1/2"
         fieldData={formData}
       />
+      <h6>
+        Already have an account?{" "}
+        <span
+          onClick={() => navigate("/login")}
+          className="cursor-pointer text-primary hover:underline"
+        >
+          Login
+        </span>
+      </h6>
     </div>
   );
 };

@@ -51,7 +51,7 @@ const CustomForm = ({
             />
           );
         })}
-        <button className="btn btn-primary w-full">Login</button>
+        <button className="btn btn-primary w-full">{heading}</button>
       </form>
     </div>
   );
