@@ -14,17 +14,25 @@ const SidebarProduct = () => {
     });
   }, []);
 
+  React.useEffect(() => {
+    getAllProducts(search).then((data) => {
+      setProducts(data);
+    });
+  }, [search]);
+
   return (
-    <div className="w-full overflow-y-auto scroll-smooth">
+    <div className="w-full overflow-y-auto scroll-smooth min-h-full">
       <CustomInput onChange={setSearch} className="h-8" placeholder="Search" />
-      {products ? (
+      {products && products.length > 0 ? (
         <div className="hidden md:block">
           {products?.map((pro, key) => {
             return <SidebarProductCard key={key} data={pro} />;
           })}
         </div>
       ) : (
-        <MonocleAnimated />
+        <div className="flex justify-center items-center h-full">
+          <MonocleAnimated height={120} width={120} />
+        </div>
       )}
     </div>
   );

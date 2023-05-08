@@ -51,9 +51,17 @@
 
 import axios from "../../../axios"
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (search) => {
     try {
-        const products = await axios.get("/product");
+        let params = {};
+
+        if (search) {
+            params.query = search
+        }
+
+        const products = await axios.get("/product", {
+            params
+        });
 
         if (products.data.responseCode === 1) {
             console.log(products.data)
