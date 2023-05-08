@@ -6,7 +6,7 @@ const SidebarContainer = ({ className, children }) => {
     <div
       className={classNames(
         className,
-        "bg-neutral text-neutral-content h-20 md:h-full md:w-1/6"
+        "bg-base-300 -text-base-300 h-20 md:h-full md:w-1/6"
       )}
     >
       {children}

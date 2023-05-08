@@ -3,7 +3,7 @@ import HeartAnimated from "../../assets/animated/heart";
 
 const Footer = () => {
   return (
-    <footer className="h-full bg-neutral text-neutral-content flex justify-between items-center px-1 sm:px-2 md:px-4">
+    <footer className="h-full bg-base-300 -text-base-300 flex justify-between items-center px-1 sm:px-2 md:px-4">
       <div className="flex tracking-wide items-center">
         Made with <HeartAnimated className="mx-2" /> by{" "}
         {import.meta.env.VITE_APP_OWNER}

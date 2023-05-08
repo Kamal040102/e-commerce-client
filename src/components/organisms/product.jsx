@@ -9,7 +9,11 @@ const ProductComponent = ({ data }) => {
     <div className="h-full flex flex-col p-5">
       <div className="flex flex-col md:flex-row h-100">
         <div className="md:w-1/2 flex flex-col items-center gap-y-5">
-          <img className="h-96" src={data?.product_images[0]} alt="image" />
+          <img
+            className="h-64 md:h-96"
+            src={data?.product_images[0]}
+            alt="image"
+          />
           <button className="btn btn-primary">Add to Cart</button>
         </div>
         <div className="flex flex-col gap-y-5 md:w-1/2 p-5">
