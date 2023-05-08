@@ -5,7 +5,6 @@ const getProduct = async (id) => {
         const product = await axios.get(`/product/${id}`)
 
         if (product) {
-            console.log(product.data)
             return product.data.responseData
         }
     } catch (err) {

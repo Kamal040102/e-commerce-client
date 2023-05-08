@@ -64,7 +64,6 @@ export const getAllProducts = async (search) => {
         });
 
         if (products.data.responseCode === 1) {
-            console.log(products.data)
             return products.data.responseData
         }
     }
