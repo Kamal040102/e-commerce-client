@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Rating from "../atoms/rating";
 import SellerInformation from "./sellerInformation";
 import RocketAnimated from "../../assets/animated/rocket";
 import CustomFullScreenLoader from "../atoms/loader";
+import { setInLocalStorage } from "../../utils/localStorage/set";
+import { getCart } from "../../utils/localStorage/get";
+import customToast from "../atoms/toast";
+import Pagination from "../atoms/pagination";
+import { getQuantityOfItem } from "../../helpers/cartHelpers";
 
 const ProductComponent = ({ data }) => {
+  const [cart, setCart] = useState(getCart());
+  const [reRender, setReRender] = useState(new Date().getTime());
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setInLocalStorage("cart", [...cart, data?._id]);
+    setReRender(new Date().getTime());
+    customToast("Item added to cart", "success");
+  };
+
+  useEffect(() => {
+    setCart(getCart());
+  }, [reRender]);
   return data ? (
     <div className="h-full flex flex-col p-5">
       <div className="flex flex-col md:flex-row h-100">
@@ -14,7 +32,13 @@ const ProductComponent = ({ data }) => {
             src={data?.product_images[0]}
             alt="image"
           />
-          <button className="btn btn-primary">Add to Cart</button>
+          {cart?.includes(data?._id) ? (
+            <Pagination count={getQuantityOfItem(data?._id)} type="num" />
+          ) : (
+            <button className="btn btn-primary" onClick={handleClick}>
+              Add to Cart
+            </button>
+          )}
         </div>
         <div className="flex flex-col gap-y-5 md:w-1/2 p-5">
           <h2 className="text-3xl font-extrabold">
