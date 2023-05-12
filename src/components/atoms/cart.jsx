@@ -1,10 +1,16 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useEffect } from "react";
 import { BsCart4, BsFillCartFill } from "react-icons/bs";
 
-const Cart = ({ size = 30, className }) => {
+const Cart = ({ size = 30, className, badgeCount = 0, onClick }) => {
   return (
-    <BsCart4 size={size} className={classNames(className, "cursor-pointer")} />
+    <div onClick={onClick} className="indicator">
+      <span className="indicator-item badge badge-secondary">{badgeCount}</span>
+      <BsCart4
+        size={size}
+        className={classNames(className, "cursor-pointer")}
+      />
+    </div>
   );
 };
 

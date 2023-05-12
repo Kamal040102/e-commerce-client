@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Rating from "../atoms/rating";
 import SellerInformation from "./sellerInformation";
 import RocketAnimated from "../../assets/animated/rocket";
@@ -8,9 +8,10 @@ import { getCart } from "../../utils/localStorage/get";
 import customToast from "../atoms/toast";
 import Pagination from "../atoms/pagination";
 import { getQuantityOfItem } from "../../helpers/cartHelpers";
+import CartContext from "../../context/CartContext";
 
 const ProductComponent = ({ data }) => {
-  const [cart, setCart] = useState(getCart());
+  const { cart, setCart } = useContext(CartContext);
   const [reRender, setReRender] = useState(new Date().getTime());
 
   const handleClick = (e) => {
@@ -18,6 +19,18 @@ const ProductComponent = ({ data }) => {
     setInLocalStorage("cart", [...cart, data?._id]);
     setReRender(new Date().getTime());
     customToast("Item added to cart", "success");
+  };
+
+  const addItem = () => {
+    setInLocalStorage("cart", [...cart, data?._id]);
+    setReRender(new Date().getTime());
+  };
+
+  const removeItem = () => {
+    const idx = cart.indexOf(data?._id);
+    cart.splice(idx, 1);
+    setInLocalStorage("cart", cart);
+    setReRender(new Date().getTime());
   };
 
   useEffect(() => {
@@ -33,7 +46,12 @@ const ProductComponent = ({ data }) => {
             alt="image"
           />
           {cart?.includes(data?._id) ? (
-            <Pagination count={getQuantityOfItem(data?._id)} type="num" />
+            <Pagination
+              rightOnClick={addItem}
+              leftOnClick={removeItem}
+              count={getQuantityOfItem(data?._id)}
+              type="num"
+            />
           ) : (
             <button className="btn btn-primary" onClick={handleClick}>
               Add to Cart

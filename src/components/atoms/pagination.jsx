@@ -7,16 +7,30 @@ const Pagination = ({
   count = 1,
   type = "arrow",
   color = "primary",
+  leftOnClick,
+  rightOnClick,
 }) => {
   return (
     <div className={classNames(className, "btn-group")}>
-      <button className={classNames(`btn-${color}`, "btn")}>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          leftOnClick();
+        }}
+        className={classNames(`btn-${color}`, "btn")}
+      >
         {type === "arrow" ? "«" : "-"}
       </button>
       <button className={classNames(`btn-${color}`, "btn")}>
         {label} {count}
       </button>
-      <button className={classNames(`btn-${color}`, "btn")}>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          rightOnClick();
+        }}
+        className={classNames(`btn-${color}`, "btn")}
+      >
         {type === "arrow" ? "»" : "+"}
       </button>
     </div>

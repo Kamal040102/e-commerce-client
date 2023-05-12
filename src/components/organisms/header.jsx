@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames";
 import Title from "../atoms/title";
 import Cart from "../atoms/cart";
 import Account from "../atoms/account";
 import SidebarProduct from "./sidebarProduct";
+import { getCart } from "../../utils/localStorage/get";
+import CartContext from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import customToast from "../atoms/toast";
 
 const Header = ({ className }) => {
+  const { cart } = useContext(CartContext);
+  const navigate = useNavigate();
   return (
     <div
       className={classNames(
@@ -16,7 +22,13 @@ const Header = ({ className }) => {
       <Title fullTitle={import.meta.env.VITE_APP_PROJECT_TITLE} />
       <SidebarProduct />
       <div className="flex justify-around gap-x-5 md:gap-x-10">
-        <Cart />
+        <Cart
+          onClick={() => {
+            // navigate("/cart");
+            customToast("Cart is under development", "info");
+          }}
+          badgeCount={cart?.length}
+        />
         <Account />
       </div>
     </div>
