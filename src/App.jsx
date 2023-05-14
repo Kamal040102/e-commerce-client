@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCart } from "./utils/localStorage/get";
 import CartProvider from "./context/CartProvider";
-import Cart from "./components/atoms/cart";
+import CartPage from "./pages/cart";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -31,7 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </CartProvider>
     </React.Fragment>

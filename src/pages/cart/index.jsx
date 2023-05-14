@@ -1,7 +1,13 @@
 import React from "react";
+import LoginLayout from "../../layouts/loginLayout";
+import CartComponent from "../../components/organisms/cartComponent";
 
-const Index = () => {
-  return <div>Index</div>;
+const CartPage = () => {
+  return (
+    <LoginLayout>
+      <CartComponent />
+    </LoginLayout>
+  );
 };
 
-export default Index;
+export default CartPage;

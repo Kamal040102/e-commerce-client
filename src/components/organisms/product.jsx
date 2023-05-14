@@ -9,6 +9,7 @@ import customToast from "../atoms/toast";
 import Pagination from "../atoms/pagination";
 import { getQuantityOfItem } from "../../helpers/cartHelpers";
 import CartContext from "../../context/CartContext";
+import CartProductPagination from "./cartProductPagination";
 
 const ProductComponent = ({ data }) => {
   const { cart, setCart } = useContext(CartContext);
@@ -19,18 +20,6 @@ const ProductComponent = ({ data }) => {
     setInLocalStorage("cart", [...cart, data?._id]);
     setReRender(new Date().getTime());
     customToast("Item added to cart", "success");
-  };
-
-  const addItem = () => {
-    setInLocalStorage("cart", [...cart, data?._id]);
-    setReRender(new Date().getTime());
-  };
-
-  const removeItem = () => {
-    const idx = cart.indexOf(data?._id);
-    cart.splice(idx, 1);
-    setInLocalStorage("cart", cart);
-    setReRender(new Date().getTime());
   };
 
   useEffect(() => {
@@ -46,11 +35,10 @@ const ProductComponent = ({ data }) => {
             alt="image"
           />
           {cart?.includes(data?._id) ? (
-            <Pagination
-              rightOnClick={addItem}
-              leftOnClick={removeItem}
-              count={getQuantityOfItem(data?._id)}
-              type="num"
+            <CartProductPagination
+              cart={cart}
+              data={data}
+              setReRender={setReRender}
             />
           ) : (
             <button className="btn btn-primary" onClick={handleClick}>
