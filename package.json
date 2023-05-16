@@ -6,8 +6,10 @@
   "scripts": {
     "start_local": "env-cmd -f ./config/env/.env.local vite",
     "start_dev": "env-cmd -f ./config/env/.env.dev vite",
+    "start_demo": "env-cmd -f ./config/env/.env.demo vite",
     "build_local": "env-cmd -f ./config/env/.env.local vite build",
     "build_dev": "env-cmd -f ./config/env/.env.dev vite build",
+    "build_demo": "env-cmd -f ./config/env/.env.demo vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
